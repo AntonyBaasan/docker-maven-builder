@@ -1,0 +1,18 @@
+version: '3'
+services:
+  maven:
+    build: .
+    volumes:
+      - ./content:/usr/src/content
+      - ~/.m2:/root/.m2
+    working_dir: /usr/src/content
+    command: >
+      bash -c "rm -rf source
+      && git clone https://github.com/antonybaasan/jokehub source
+      && cd source
+      && mvn clean install
+      && cd ..
+      && mkdir -p output
+      && find source/target -name '*.jar' -exec cp {} ./output \;
+      && cd ..
+      && rm -rf source"
