@@ -14,5 +14,4 @@ services:
       && cd ..
       && mkdir -p output
       && find source/target -name '*.jar' -exec cp {} ./output \;
-      && cd ..
       && rm -rf source"
