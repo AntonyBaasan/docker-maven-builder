@@ -2,14 +2,15 @@ version: '3'
 services:
   maven:
     build: .
-    hostname: ${BUILD_TARGET}
+    environment:
+      - REPO=${REPO}
     volumes:
-      - ${BUILD_TARGET}/jokehub:/usr/src/content
+      - ${BUILD_TARGET}/${PROJECT}:/usr/src/content
       - ~/.m2:/root/.m2
     working_dir: /usr/src/content
     command: >
       bash -c "rm -rf source
-      && git clone https://github.com/antonybaasan/jokehub source
+      && git clone $REPO source
       && cd source
       && mvn clean install
       && cd ..
