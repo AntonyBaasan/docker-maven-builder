@@ -2,8 +2,6 @@ version: '3'
 services:
   maven:
     build: .
-    environment:
-      - REPO=${REPO}
     volumes:
       - ${BUILD_TARGET}/${PROJECT}:/usr/src/content
       - ~/.m2:/root/.m2
